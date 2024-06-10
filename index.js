@@ -8,15 +8,11 @@ import {
   View,
   TouchableWithoutFeedback,
 } from 'react-native';
-import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 
 
 const PAGE_CHANGE_DELAY = 4000;
-
-// if ViewPropTypes is not defined fall back to View.propTypes (to support RN < 0.44)
-const viewPropTypes = ViewPropTypes || View.propTypes;
 
 /**
  * Animates pages in cycle
@@ -24,33 +20,81 @@ const viewPropTypes = ViewPropTypes || View.propTypes;
 */
 export default class Carousel extends Component {
   static propTypes = {
-    children: PropTypes.node.isRequired,
-    autoplay: PropTypes.bool,
-    delay: PropTypes.number,
-    currentPage: PropTypes.number,
-    style: viewPropTypes.style,
-    pageStyle: viewPropTypes.style,
-    contentContainerStyle: viewPropTypes.style,
-    pageInfo: PropTypes.bool,
-    pageInfoBackgroundColor: PropTypes.string,
-    pageInfoTextStyle: Text.propTypes.style,
-    pageInfoBottomContainerStyle: viewPropTypes.style,
-    pageInfoTextSeparator: PropTypes.string,
-    bullets: PropTypes.bool,
-    bulletsContainerStyle: Text.propTypes.style,
-    bulletStyle: Text.propTypes.style,
-    arrows: PropTypes.bool,
-    arrowsContainerStyle: Text.propTypes.style,
-    arrowStyle: Text.propTypes.style,
-    leftArrowStyle: Text.propTypes.style,
-    rightArrowStyle: Text.propTypes.style,
-    leftArrowText: PropTypes.string,
-    rightArrowText: PropTypes.string,
-    chosenBulletStyle: Text.propTypes.style,
-    onAnimateNextPage: PropTypes.func,
-    onPageBeingChanged: PropTypes.func,
-    swipe: PropTypes.bool,
-    isLooped: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  autoplay: PropTypes.bool,
+  delay: PropTypes.number,
+  currentPage: PropTypes.number,
+  style: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  pageStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  contentContainerStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  pageInfo: PropTypes.bool,
+  pageInfoBackgroundColor: PropTypes.string,
+  pageInfoTextStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  pageInfoBottomContainerStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  pageInfoTextSeparator: PropTypes.string,
+  bullets: PropTypes.bool,
+  bulletsContainerStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  bulletStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  arrows: PropTypes.bool,
+  arrowsContainerStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  arrowStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  leftArrowStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  rightArrowStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  leftArrowText: PropTypes.string,
+  rightArrowText: PropTypes.string,
+  chosenBulletStyle: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
+    PropTypes.number,
+  ]),
+  onAnimateNextPage: PropTypes.func,
+  onPageBeingChanged: PropTypes.func,
+  swipe: PropTypes.bool,
+  isLooped: PropTypes.bool,
   };
 
   static defaultProps = {
